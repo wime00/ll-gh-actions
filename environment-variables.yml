@@ -25,7 +25,8 @@ jobs:
           echo "5. ${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
           echo "6. ${{ env.JOB_ENVIRONMENT_VARIABLE }}"
           echo "7. ${{ env.STEP_ENVIRONMENT_VARIABLE }}"
-          echo "8. ${{ env.override }}"
+          echo "8. ${{ env.OVER_RIDE }}"
+          echo "9. ${{ secrets.KEY_ID }}"
   windows:
     env:
       JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable'
