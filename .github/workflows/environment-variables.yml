@@ -1,0 +1,47 @@
+name: Environment Variables
+env: 
+  WORKSPACE_ENVIRONMENT_VARIABLE: 'custom workspace environment variable'
+on: [push]
+jobs:
+  ubuntu:
+    env:
+      JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable'
+      OVER_RIDE: 'job'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print custom environment variables from ubunt-latest
+        env: 
+          STEP_ENVIRONMENT_VARIABLE: 'custom step environment variable'
+        run: |
+          echo "Accessing enviornment variables using shell syntax"
+          ecko "1. $WORKSPACE_ENVIRONMENT_VARIABLE"
+          echo "2. $JOB_ENVIRONMENT_VARIABLE"
+          echo "3. $STEP_ENVIRONMENT_VARIABLE"
+          echo "4. $OVER_RIDE"
+          echo ""
+          echo "--------------------------------------------------------"
+          echo ""
+          echo "acessing environment variables using YAML syntax"
+          echo "5. ${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
+          echo "6. ${{ env.JOB_ENVIRONMENT_VARIABLE }}"
+          echo "7. ${{ env.STEP_ENVIRONMENT_VARIABLE }}"
+          echo "8. ${{ env.override }}"
+  windows:
+    env:
+      JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable'
+    runs-on: windows-latest
+    steps:
+      - name: Print custom environment variables from windows-latest
+        run: |
+          echo "Accessing enviornment variables in run command"
+          echo "1. $Env:WORKSPACE_ENVIRONMENT_VARIABLE"
+          echo "2. $Env:JOB_ENVIRONMENT_VARIABLE"
+          echo "3. $Env:STEP_ENVIRONMENT_VARIABLE"
+          echo ""
+          echo "--------------------------------------------------------"
+          echo ""
+          echo "acessing environment variables using YAML syntax"
+          echo "3. ${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
+          echo "4. ${{ env.JOB_ENVIRONMENT_VARIABLE }}"
+          echo "5. ${{ env.Step_ENVIRONMENT_VARIABLE }} not defined"
+        
